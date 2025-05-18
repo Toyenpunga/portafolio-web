@@ -1,0 +1,275 @@
+/* Reset básico */
+@import "node_modules/bootstrap-icons/font/bootstrap-icons.css";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* 🌑 Dark Theme */
+body {
+    background-color: #121212;
+    color: #E0E0E0;
+}
+
+/* 🌐 NAVBAR */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #1E1E1E;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #E0E0E0;
+    font-size: 18px;
+    padding: 10px;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #333;
+    border-radius: 5px;
+}
+
+/* 🔹 HEADER */
+header {
+    background: linear-gradient(to right, #3e3e3e, #969696);
+    color: white;
+    padding: 80px 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 900px;
+}
+
+/* 📌 Foto cuadrada */
+.header-foto img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 4px solid white;
+    border-radius: 10px;
+}
+
+/* 📌 SECCIONES */
+section {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #1E1E1E;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+/* 📌 ÍCONOS EN LENGUAJES Y HERRAMIENTAS */
+.icon-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.icon-container img {
+    width: 80px;
+    height: 80px;
+    transition: transform 0.3s;
+}
+
+.icon-container img:hover {
+    transform: scale(1.1);
+}
+
+/* 📩 CONTACTO */
+.contact-icons {
+    display: flex;
+    justify-content: center;  /* Centra los iconos en el contenedor */
+    gap: 30px;                /* Espacio entre los iconos */
+    align-items: center;      /* Alineación vertical de los iconos */
+    padding-top: 20px;        /* Espacio superior para los iconos */
+}
+
+.contact-icons i {
+    font-size: 40px;          /* Tamaño de los íconos */
+    color: white;             /* Color por defecto */
+    cursor: pointer;         /* Hace que sean clickeables */
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Cuando el mouse pasa por encima de cualquier icono */
+.contact-icons i:hover {
+    transform: scale(1.2);   /* Efecto de agrandado */
+    color: #0a3871;           /* Azul oscuro al hacer hover */
+}
+.contact-icons a:hover {
+    transform: scale(1.2);   /* Efecto de agrandado */
+    color: #0a3871;           /* Azul oscuro al hacer hover */
+}
+
+/* 🧩 SECCIÓN PROYECTOS */
+#mis-proyectos h2 {
+    margin-bottom: 30px;
+}
+
+.proyectos-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.proyecto {
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    padding: 10px;
+    width: 250px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.proyecto img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.proyecto h3 {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.proyecto:hover {
+    transform: scale(1.05);
+    background-color: #3a3a3a;
+}
+
+/* 🧩 MODAL PERSONALIZADO */
+.modal-content {
+    background-color: #1E1E1E;
+    border-radius: 10px;
+}
+
+.modal-body p {
+    margin-bottom: 15px;
+}
+
+/* 🟩 SWITCH DE MINECRAFT - mejorado */
+.switch {
+    font-size: 17px;
+    position: relative;
+    display: inline-block;
+    width: 4em;
+    height: 2em;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: background-color 0.4s;
+    border-radius: 4px;
+  }
+  
+  .off,
+  .on {
+    position: absolute;
+    height: 2em;
+    width: 2em;
+    background-color: white;
+    image-rendering: pixelated;
+    transition: transform 0.4s, opacity 0.4s;
+  }
+  
+  .off {
+    left: 0;
+    opacity: 1;
+    z-index: 2;
+  }
+  
+  .on {
+    left: 0;
+    opacity: 0;
+    z-index: 1;
+  }
+  
+  .switch input:checked ~ .slider {
+    background-color: #bbb;
+  }
+  
+  .switch input:checked ~ .off {
+    transform: translateX(2em);
+    opacity: 0;
+  }
+  
+  .switch input:checked ~ .on {
+    transform: translateX(2em);
+    opacity: 1;
+  }
+
+  /* 🌞 TEMA CLARO */
+body.light-theme {
+    background-color: #9e9e9e;
+    color: #222;
+  }
+  
+  body.light-theme nav {
+    background-color: #9e9e9e;
+  }
+  
+  body.light-theme section {
+    background-color: #cdcdcd;
+    color: #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  body.light-theme .proyecto {
+    background-color: #9e9e9e;
+  }
+  
+  body.light-theme .contact-icons i {
+    color: #000;
+  }
+  
+  body.light-theme .contact-icons i:hover {
+    color: #1a73e8;
+  }
+  
+  section {
+    scroll-margin-top: 80px; /* Ajusta este valor al alto real de tu navbar */
+  }
