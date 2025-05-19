@@ -12,9 +12,78 @@
     
 
 </head>
+
+<!-- Toast flotante para copiar email -->
+<div id="toast" style="
+  visibility: hidden;
+  min-width: 200px;
+  margin-left: -100px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  padding: 12px;
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  bottom: 30px;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+">
+  ¡Email copiado al portapapeles!
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const toggle = document.getElementById("theme-toggle");
+  const clickSound = document.getElementById("click-sound");
+
+  // Aplicar tema claro por defecto si el sistema lo usa
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+    document.body.classList.add("light-theme");
+  }
+
+  // Cambiar tema con el switch
+  if (toggle) {
+    toggle.addEventListener("change", () => {
+      clickSound.currentTime = 0;
+      clickSound.play();
+      document.body.classList.toggle("light-theme");
+    });
+  }
+
+  // Copiar email y mostrar toast
+  const emailIcon = document.getElementById("copy-email");
+  const toast = document.getElementById("toast");
+
+  if (emailIcon) {
+    emailIcon.addEventListener("click", () => {
+      const email = emailIcon.getAttribute("data-email");
+      if (navigator.clipboard && email) {
+        navigator.clipboard.writeText(email)
+          .then(() => {
+            // Mostrar toast
+            toast.style.visibility = "visible";
+            toast.style.opacity = 1;
+            setTimeout(() => {
+              toast.style.opacity = 0;
+              toast.style.visibility = "hidden";
+            }, 2000);
+          })
+          .catch(err => {
+            console.error("Error al copiar el email: ", err);
+          });
+      }
+    });
+  }
+});
+</script>
+
+
 <body>
     <!-- 🌗 SWITCH estilo Minecraft -->
-    <div class="theme-switch-container">
+   <!-- <div class="theme-switch-container">
         <label class="switch">
             <input type="checkbox" id="theme-toggle">
             <span class="slider"></span>
@@ -22,9 +91,10 @@
             <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAQABADASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAQIEBf/EACMQAAEDAwQDAQEAAAAAAAAAAAQBAgUDESEAEjFBBlFhMkL/xAAUAQEAAAAAAAAAAAAAAAAAAAAF/8QAGBEAAwEBAAAAAAAAAAAAAAAAABIiMUH/2gAMAwEAAhEDEQA/AM+Bg4mS8coRccMOdNG01qVyH/kRvHPKKmMdr8uujPwUTG+NkRpw1AKWCbvHKa2zTGphc9u9p0q+rLqeMl4kSCGkYgtoE0HTahIz3bWGNanPrdyqWzn7p5ibh5CArnyZNMyVLpK0QSkt2BNXtVX+7ol1wuLJiyaHt+6Kyp//2Q==" class="on">
         </label>
 
-        <!-- Sonido tipo clic Minecraft -->
+         Sonido tipo clic Minecraft 
         <audio id="click-sound" src="aassets/click.mp3" preload="auto"></audio>
-    </div>
+     </div> -->
+    
 
     <!-- 🔹 NAVBAR -->
     <nav>
@@ -34,7 +104,23 @@
             <li><a href="#sobre-mi">Sobre Mí</a></li>
             <li><a href="#mis-proyectos">Mis Proyectos</a></li>
             <li><a href="#contacto">Contacto</a></li>
-        </ul>
+              <!-- 🌗 SWITCH estilo Minecraft -->
+            <div class="theme-switch-container">
+              <label class="switch">
+                  <input type="checkbox" id="theme-toggle">
+                  <span class="slider"></span>
+                  <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAQABADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIG/8QAIxAAAgIABQQDAAAAAAAAAAAAAQMCBAAREiExBUFRcROBsf/EABQBAQAAAAAAAAAAAAAAAAAAAAX/xAAWEQADAAAAAAAAAAAAAAAAAAAAEiL/2gAMAwEAAhEDEQA/AMBTp03dNglMVuttjqnKQ2UPOfntkOThbqVVUJ12BKnogZQZpy+Ucc8knwePWJrWqyqEHVmrTahEBqpbBoAH1n635wt3a9mjN1p8X2pw0qVEbKB/CO/c4OphSVP/2Q==" class="off">
+                  <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAQABADASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAQIEBf/EACMQAAEDAwQDAQEAAAAAAAAAAAQBAgUDESEAEjFBBlFhMkL/xAAUAQEAAAAAAAAAAAAAAAAAAAAF/8QAGBEAAwEBAAAAAAAAAAAAAAAAABIiMUH/2gAMAwEAAhEDEQA/AM+Bg4mS8coRccMOdNG01qVyH/kRvHPKKmMdr8uujPwUTG+NkRpw1AKWCbvHKa2zTGphc9u9p0q+rLqeMl4kSCGkYgtoE0HTahIz3bWGNanPrdyqWzn7p5ibh5CArnyZNMyVLpK0QSkt2BNXtVX+7ol1wuLJiyaHt+6Kyp//2Q==" class="on">
+              </label>
+
+              <!-- Sonido tipo clic Minecraft --> 
+              <audio id="click-sound" src="aassets/click.mp3" preload="auto"></audio>
+          </div> 
+        
+          </ul>
+
+        
+
     </nav>
 
     <!-- 🔹 HEADER -->
@@ -42,7 +128,7 @@
         <div class="header-content">
             <div class="header-texto">
                 <h1>Tomas Rodriguez</h1>
-                <p>Estudiante de Tecnicatura en Prgoramación Informática</p>
+                <p>Estudiante de Tecnicatura en Programación Informática</p>
             </div>
             <div class="header-foto">
                 <img src="assets/foto.jpg" alt="Foto de Tomas Rodriguez">
@@ -74,15 +160,18 @@
 
     <!-- 🔹 SECCIÓN SOBRE MÍ -->
     <section id="sobre-mi">
-        <h2>Sobre Mí</h2>
-        <p> Hola Soy Tomás Rodríguez, un apasionado del desarrollo de videojuegos y la programación. Desde pequeño, los videojuegos han sido una gran inspiración para mí, no solo como entretenimiento, sino como una forma de arte e innovación tecnológica.
+  <h2>Sobre mí</h2>
+  <p>
+    ¡Hola! Me llamo <strong>Tomas Rodriguez</strong>, tengo 20 años y soy un apasionado de la <strong>programación</strong> y los <strong>videojuegos</strong>. Desde muy joven me interesó el mundo de la tecnología, lo que me llevó a explorar distintas áreas del desarrollo y a seguir perfeccionando mis habilidades día a día.
+  </p>
+  <p>
+    Además de mi interés por el código, cuento con un <strong>nivel avanzado de inglés</strong>, lo que me permite acceder a documentación técnica, cursos internacionales y comunicarme con personas de todo el mundo. Siempre estoy en búsqueda de nuevos desafíos y oportunidades que me permitan crecer tanto profesional como personalmente.
+  </p>
+  <p>
+    Me considero una persona lista para nuevos desafios, aprender y formar parte de proyectos. Estoy motivado para dar lo mejor de mí en cada tarea, con compromiso, curiosidad y dedicación.
+  </p>
+</section>
 
-            Actualmente, tengo 20 años y me encuentro en constante aprendizaje en el mundo de la programación y el desarrollo digital. Me manejo cómodamente con lenguajes como Python, C++, Wollok y Assembler, lo que me permite desarrollar desde proyectos básicos hasta sistemas más complejos.
-            
-            Además, cuento con conocimientos intermedios en Photoshop y Adobe Premiere, herramientas que utilizo para la creación de contenido visual y edición de videos. También me desenvuelvo en Unreal Engine 5 y Unity, motores gráficos que potencian mi capacidad para diseñar y programar experiencias interactivas.
-            
-            Siempre estoy buscando nuevos desafíos y oportunidades para seguir mejorando mis habilidades y contribuir al mundo del desarrollo de software y videojuegos.</p>
-    </section>
 
     <!-- 🔹 SECCIÓN MIS PROYECTOS -->
 <section id="mis-proyectos">
@@ -136,10 +225,9 @@
       </div>
       <div class="modal-body">
         <p>📝 Este mini-juego es una copia de los juegos de Pokemon realizado totalmente en Wollok.</p>
-        <video controls width="100%">
-            <source src="assets/pokemon-video.mp4" type="video/mp4">
-            Tu navegador no soporta video HTML5.
-        </video>
+        <div class="ratio ratio-16x9">
+          <iframe src="https://www.youtube.com/embed/f2ucIw3YwPI" title="Video de Pokémon en Wollok" allowfullscreen></iframe>
+        </div>
       </div>
     </div>
   </div>
@@ -154,21 +242,21 @@
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
       <div class="modal-body">
-        <p>📝 Mi proyecto de pruebas en Unreal Engine 5 donde estoy intentando recrear la obra de Nacidos de la Bruma(libro de ficcion).</p>
-        <video controls width="100%">
-            <source src="assets/bruma-video.mp4" type="video/mp4">
-            Tu navegador no soporta video HTML5.
-        </video>
+        <p>📝 Mi proyecto de pruebas en Unreal Engine 5 donde estoy intentando recrear la obra de Nacidos de la Bruma (libro de ficción).</p>
+        <div class="ratio ratio-16x9">
+          <iframe src="https://www.youtube.com/embed/JedC0jpZQZY" title="Nacidos de la Bruma UE5" allowfullscreen></iframe>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
+
     <!-- 🔹 SECCIÓN CONTACTO -->
     <section id="contacto">
         <h2>Contacto</h2>
         <div class="contact-icons">
-            <i class="bi bi-envelope-at-fill" id="copy-email"></i> <!-- Ícono de mail -->
+            <i class="bi bi-envelope-at-fill" id="copy-email" data-email="tomasrodriguezescolar@gmail.com" title="Copiar email"></i> <!-- Ícono de mail -->
             <a href="https://www.linkedin.com/in/tomas-rodriguez-469309256/" target="_blank">
                 <i class="bi bi-linkedin"></i> <!-- Ícono de LinkedIn -->
             </a>
@@ -179,6 +267,19 @@
     </section>
     <!-- Bootstrap JS (Opcional, solo si usas componentes interactivos) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  const themeToggle = document.getElementById("theme-toggle");
+
+  themeToggle.addEventListener("change", () => {
+    document.body.classList.toggle("light-theme");
+
+    // Para debug
+    console.log("Clase actual del body:", document.body.className);
+  });
+</script>
+
+  
 </body>
 </html>
 

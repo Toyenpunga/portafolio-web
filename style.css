@@ -9,10 +9,11 @@
 }
 
 /* 🌑 Dark Theme */
-body {
+body:not(.light-theme) {
     background-color: #121212;
     color: #E0E0E0;
 }
+
 
 /* 🌐 NAVBAR */
 nav {
@@ -273,3 +274,34 @@ body.light-theme {
   section {
     scroll-margin-top: 80px; /* Ajusta este valor al alto real de tu navbar */
   }
+  
+  body.light-theme header {
+    background: linear-gradient(to right, #e0e0e0, #ffffff);
+    color: black;
+}
+
+body.light-theme .modal-content {
+    background-color: #f0f0f0;
+    color: #000;
+}
+
+body.light-theme .proyecto:hover {
+    background-color: #d0d0d0;
+}
+
+body.light-theme nav ul li a {
+    color: #222;
+}
+
+body.light-theme nav ul li a:hover {
+    background-color: #ddd;
+}
+
+body.light-theme .switch .slider {
+    background-color: #ccc;
+}
+
+body.light-theme .btn {
+    background-color: #e0e0e0;
+    color: #000;
+}
